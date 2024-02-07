@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class App extends Application {
     @Override
@@ -16,7 +15,7 @@ public class App extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 854, 480);
         scene.getStylesheets().add(this.getClass().getResource("/style.css").toExternalForm());
         stage.setTitle("MineControl " + Constants.VERSION);
-        stage.getIcons().add(new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/icon.png"))));
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/icon.png")));
         stage.setScene(scene);
         stage.setMinWidth(854);
         stage.setMinHeight(480);
