@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import net.anvian.minecontrolfx.util.CustomListItem;
+import net.anvian.minecontrolfx.util.os.DirectoryCreator;
 import net.anvian.minecontrolfx.util.os.OsChecker;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Path documentsPath = Path.of(OsChecker.getFileFolder());
+        Path documentsPath = Path.of(DirectoryCreator.getFileFolder(OsChecker.getOperatingSystemType()));
 
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(documentsPath)) {
             for (Path path : stream) {
