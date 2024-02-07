@@ -18,6 +18,8 @@ public class App extends Application {
         stage.setTitle("MineControl " + Constants.VERSION);
         stage.getIcons().add(new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/icon.png"))));
         stage.setScene(scene);
+        stage.setMinWidth(854);
+        stage.setMinHeight(480);
         stage.show();
     }
 
