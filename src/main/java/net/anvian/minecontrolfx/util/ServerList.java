@@ -2,5 +2,5 @@ package net.anvian.minecontrolfx.util;
 
 import javafx.scene.image.Image;
 
-public record CustomListItem(String directoryName, Image icon) {
+public record ServerList(String directoryName, Image icon) {
 }

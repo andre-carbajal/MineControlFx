@@ -2,11 +2,15 @@ package net.anvian.minecontrolfx.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import net.anvian.minecontrolfx.util.CustomListItem;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import net.anvian.minecontrolfx.util.ServerList;
 import net.anvian.minecontrolfx.util.os.DirectoryCreator;
 import net.anvian.minecontrolfx.util.os.OsChecker;
 
@@ -19,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     @FXML
-    private ListView<CustomListItem> serverList;
+    private ListView<ServerList> serverList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -29,7 +33,7 @@ public class MainController implements Initializable {
             for (Path path : stream) {
                 if (Files.isDirectory(path)) {
                     Image icon = new Image(Files.newInputStream(path.resolve("icon.png")));
-                    serverList.getItems().add(new CustomListItem(path.getFileName().toString(), icon));
+                    serverList.getItems().add(new ServerList(path.getFileName().toString(), icon));
                 }
             }
         } catch (IOException e) {
@@ -40,7 +44,7 @@ public class MainController implements Initializable {
             private final ImageView imageView = new ImageView();
 
             @Override
-            protected void updateItem(CustomListItem item, boolean empty) {
+            protected void updateItem(ServerList item, boolean empty) {
                 super.updateItem(item, empty);
 
                 if (empty || item == null) {
