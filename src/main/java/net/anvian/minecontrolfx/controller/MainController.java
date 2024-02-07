@@ -46,10 +46,10 @@ public class MainController implements Initializable {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    imageView.setImage(item.getIcon());
+                    imageView.setImage(item.icon());
                     imageView.setFitWidth(64);
                     imageView.setFitHeight(64);
-                    setText(item.getDirectoryName());
+                    setText(item.directoryName());
                     setGraphic(imageView);
                 }
             }
