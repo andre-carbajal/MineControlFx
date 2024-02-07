@@ -3,27 +3,25 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Pane prefHeight="200.0" prefWidth="200.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.anvian.minecontrolfx.controller.MainController">
+   <left>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="215.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="199.0">
-               <children>
-                  <ImageView fitHeight="104.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../icon.png" />
-                     </image>
-                  </ImageView>
-                  <ListView prefHeight="200.0" prefWidth="200.0" />
-                  <Pane prefHeight="62.0" prefWidth="199.0" />
-               </children>
-            </VBox>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../icon.png" />
+               </image>
+            </ImageView>
+            <ListView fx:id="serverList" prefHeight="200.0" prefWidth="200.0" />
+            <Pane prefHeight="51.0" prefWidth="215.0" />
          </children>
-      </Pane>
-      <Pane prefHeight="400.0" prefWidth="402.0" />
-   </children>
-</HBox>
+      </VBox>
+   </left>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
