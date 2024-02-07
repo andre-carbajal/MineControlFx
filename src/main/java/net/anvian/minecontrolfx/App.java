@@ -14,8 +14,9 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 854, 480);
+        scene.getStylesheets().add(this.getClass().getResource("/style.css").toExternalForm());
         stage.setTitle("MineControl " + Constants.VERSION);
-        stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResourceAsStream("/icon.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/icon.png"))));
         stage.setScene(scene);
         stage.show();
     }
