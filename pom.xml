@@ -6,7 +6,7 @@
 
     <groupId>net.anvian</groupId>
     <artifactId>MineControlFx</artifactId>
-    <version>0.4</version>
+    <version>0.5</version>
     <name>MineControlFx</name>
 
     <properties>
