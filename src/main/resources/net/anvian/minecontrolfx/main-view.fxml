@@ -35,24 +35,39 @@
                </image></ImageView>
          </top>
          <center>
-            <ListView fx:id="serverList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <ListView fx:id="serverList" onMouseClicked="#openServer" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets top="20.0" />
                </BorderPane.margin></ListView>
          </center>
          <bottom>
-            <Button mnemonicParsing="false" text="+" BorderPane.alignment="CENTER">
+            <GridPane alignment="CENTER" prefHeight="50.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="+" visible="false" GridPane.halignment="CENTER" />
+               </children>
                <BorderPane.margin>
                   <Insets top="20.0" />
                </BorderPane.margin>
-               <font>
-                  <Font size="18.0" />
-               </font></Button>
+            </GridPane>
          </bottom>
       </BorderPane>
      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="233.0" GridPane.columnIndex="1" GridPane.columnSpan="3">
        <children>
-         <Label text="Label" />
+         <Label text="Create A Server">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Button fx:id="createServer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="+">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
        </children>
      </VBox>
    </children>

@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import net.anvian.minecontrolfx.util.ServerList;
@@ -59,5 +60,23 @@ public class MainController implements Initializable {
                 }
             }
         });
+    }
+
+
+    public void openServer(MouseEvent mouseEvent) {
+        if (mouseEvent.getClickCount() == 2) {
+            ServerList selectedItem = serverList.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                Stage newWindow = new Stage();
+                newWindow.initModality(Modality.APPLICATION_MODAL);
+
+                newWindow.setTitle("Detalles del servidor");
+                Label label = new Label("Nombre del servidor: " + selectedItem.directoryName());
+                Scene scene = new Scene(label, 200, 200);
+                newWindow.setScene(scene);
+
+                newWindow.show();
+            }
+        }
     }
 }
