@@ -10,7 +10,7 @@ public class DirectoryCreator {
         String fileFolder = switch (osType) {
             case Windows -> System.getenv("APPDATA");
             case MacOS -> System.getProperty("user.home") + "/Library/Application Support";
-            case Linux -> System.getProperty("user.dir" + ".Launcher");
+            case Linux -> System.getProperty("user.home" + ".Launcher");
             default -> System.getProperty("user.home");
         };
 
