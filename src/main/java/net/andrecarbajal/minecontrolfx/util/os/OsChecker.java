@@ -1,4 +1,4 @@
-package net.anvian.minecontrolfx.util.os;
+package net.andrecarbajal.minecontrolfx.util.os;
 
 import java.util.Locale;
 

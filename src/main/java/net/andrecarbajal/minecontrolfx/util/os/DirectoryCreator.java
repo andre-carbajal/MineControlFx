@@ -1,4 +1,6 @@
-package net.anvian.minecontrolfx.util.os;
+package net.andrecarbajal.minecontrolfx.util.os;
+
+import net.andrecarbajal.minecontrolfx.Constants;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +12,6 @@ public class DirectoryCreator {
         String fileFolder = switch (osType) {
             case Windows -> System.getenv("APPDATA");
             case MacOS -> System.getProperty("user.home") + "/Library/Application Support";
-            case Linux -> System.getProperty("user.home" + ".Launcher");
             default -> System.getProperty("user.home");
         };
 
@@ -19,7 +20,7 @@ public class DirectoryCreator {
             try {
                 Files.createDirectories(path);
             } catch (IOException e) {
-                e.printStackTrace();
+                Constants.LOGGER.error("Failed to create directory: {}", path, e);
             }
         }
 

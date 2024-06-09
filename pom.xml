@@ -6,7 +6,7 @@
 
     <groupId>net.anvian</groupId>
     <artifactId>MineControlFx</artifactId>
-    <version>0.6</version>
+    <version>0.7</version>
     <name>MineControlFx</name>
 
     <properties>
@@ -14,10 +14,16 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.9.2</junit.version>
-        <mainClass>net.anvian.minecontrolfx.App</mainClass>
+        <mainClass>net.andrecarbajal.minecontrolfx.App</mainClass>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -67,7 +73,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>net.anvian.minecontrolfx/net.anvian.minecontrolfx.App</mainClass>
+                            <mainClass>net.andrecarbajal.minecontrolfx/net.andrecarbajal.minecontrolfx.App</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

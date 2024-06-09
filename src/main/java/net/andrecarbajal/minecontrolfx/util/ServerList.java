@@ -1,4 +1,4 @@
-package net.anvian.minecontrolfx.util;
+package net.andrecarbajal.minecontrolfx.util;
 
 import javafx.scene.image.Image;
 

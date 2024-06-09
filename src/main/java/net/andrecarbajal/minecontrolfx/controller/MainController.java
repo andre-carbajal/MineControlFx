@@ -1,4 +1,4 @@
-package net.anvian.minecontrolfx.controller;
+package net.andrecarbajal.minecontrolfx.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,9 +11,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import net.anvian.minecontrolfx.util.ServerList;
-import net.anvian.minecontrolfx.util.os.DirectoryCreator;
-import net.anvian.minecontrolfx.util.os.OsChecker;
+import net.andrecarbajal.minecontrolfx.Constants;
+import net.andrecarbajal.minecontrolfx.util.ServerList;
+import net.andrecarbajal.minecontrolfx.util.os.DirectoryCreator;
+import net.andrecarbajal.minecontrolfx.util.os.OsChecker;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,7 +39,7 @@ public class MainController implements Initializable {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Constants.LOGGER.error("Error reading the server directory", e);
         }
 
         serverList.setCellFactory(param -> new ListCell<>() {

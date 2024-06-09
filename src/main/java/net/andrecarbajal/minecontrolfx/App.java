@@ -1,4 +1,4 @@
-package net.anvian.minecontrolfx;
+package net.andrecarbajal.minecontrolfx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

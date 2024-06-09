@@ -1,10 +1,11 @@
 module net.anvian.minecontrolfx {
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.slf4j;
 
 
-    opens net.anvian.minecontrolfx to javafx.fxml;
-    exports net.anvian.minecontrolfx;
-    exports net.anvian.minecontrolfx.controller;
-    opens net.anvian.minecontrolfx.controller to javafx.fxml;
+    opens net.andrecarbajal.minecontrolfx to javafx.fxml;
+    exports net.andrecarbajal.minecontrolfx;
+    exports net.andrecarbajal.minecontrolfx.controller;
+    opens net.andrecarbajal.minecontrolfx.controller to javafx.fxml;
 }
