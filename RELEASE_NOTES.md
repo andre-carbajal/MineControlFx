@@ -1,4 +1,4 @@
-# Release Notes - Version 0.3
+# Release Notes
 
 ## Enhancements
-- user.dir to user.home in Mac OS
+- Package name changed to `net.andrecarbajal` from `net.anvian`.
