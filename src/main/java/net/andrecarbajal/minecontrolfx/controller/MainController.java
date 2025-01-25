@@ -1,14 +1,18 @@
 package net.andrecarbajal.minecontrolfx.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import net.andrecarbajal.minecontrolfx.Constants;
@@ -24,6 +28,9 @@ import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+    @FXML
+    private GridPane rootGridPane;
+
     @FXML
     private ListView<ServerList> serverList;
 
@@ -63,8 +70,8 @@ public class MainController implements Initializable {
         });
     }
 
-
-    public void openServer(MouseEvent mouseEvent) {
+    @FXML
+    private void openServer(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2) {
             ServerList selectedItem = serverList.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
@@ -78,6 +85,29 @@ public class MainController implements Initializable {
 
                 newWindow.show();
             }
+        }
+    }
+
+    @FXML
+    private void createServer(ActionEvent actionEvent) {
+        openServerView("/net/andrecarbajal/minecontrolfx/create-view.fxml");
+    }
+
+    @FXML
+    private void openServerView(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            ScrollPane newScrollPane = loader.load();
+
+            rootGridPane.getChildren().removeIf(node ->
+                    GridPane.getColumnIndex(node) != null &&
+                            GridPane.getColumnIndex(node) == 1 &&
+                            GridPane.getColumnSpan(node) == 3
+            );
+
+            rootGridPane.add(newScrollPane, 1, 0, 3, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
