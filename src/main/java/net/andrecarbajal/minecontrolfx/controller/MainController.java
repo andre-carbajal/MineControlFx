@@ -107,7 +107,7 @@ public class MainController implements Initializable {
 
             rootGridPane.add(newScrollPane, 1, 0, 3, 1);
         } catch (IOException e) {
-            e.printStackTrace();
+            Constants.LOGGER.error("Error loading the server view", e);
         }
     }
 }
