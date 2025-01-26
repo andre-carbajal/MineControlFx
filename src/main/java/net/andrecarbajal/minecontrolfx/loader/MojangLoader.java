@@ -17,14 +17,14 @@ public abstract class MojangLoader implements ILoader{
 
     @Override
     public String getLoaderApi() {
-        return "https://launchermeta.mojang.com/mc/";
+        return "https://launchermeta.mojang.com/mc/game/version_manifest.json";
     }
 
     @Override
     public List<String> getVersions() {
         List<String> versions = new ArrayList<>();
         try {
-            URL url = new URL(getLoaderApi() + "game/version_manifest.json");
+            URL url = new URL(getLoaderApi());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
@@ -46,5 +46,48 @@ public abstract class MojangLoader implements ILoader{
             Constants.LOGGER.error("Error getting versions from Vanilla", e);
         }
         return versions;
+    }
+
+    public String getVersionId(String version) {
+        try {
+            URL url = new URL(getLoaderApi());
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            Gson gson = new Gson();
+            JsonObject manifest = gson.fromJson(reader, JsonObject.class);
+            JsonArray versionArray = manifest.getAsJsonArray("versions");
+
+            for (int i = 0; i < versionArray.size(); i++) {
+                JsonObject versionObj = versionArray.get(i).getAsJsonObject();
+                if (version.equals(versionObj.get("id").getAsString())){
+                    String versionUrl = versionObj.get("url").getAsString();
+                    reader.close();
+                    connection.disconnect();
+
+                    URL versionDetailsUrl = new URL(versionUrl);
+                    HttpURLConnection versionConnection = (HttpURLConnection) versionDetailsUrl.openConnection();
+                    versionConnection.setRequestMethod("GET");
+
+                    BufferedReader versionReader = new BufferedReader(new InputStreamReader(versionConnection.getInputStream()));
+                    JsonObject versionDetails = gson.fromJson(versionReader, JsonObject.class);
+                    JsonObject downloads = versionDetails.getAsJsonObject("downloads");
+                    JsonObject server = downloads.getAsJsonObject("server");
+                    String serverUrl = server.get("url").getAsString();
+
+                    versionReader.close();
+                    versionConnection.disconnect();
+
+                    return serverUrl;
+                }
+            }
+
+            reader.close();
+            connection.disconnect();
+        } catch (Exception e) {
+            Constants.LOGGER.error("Error getting versions from Vanilla", e);
+        }
+        return null;
     }
 }

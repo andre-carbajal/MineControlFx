@@ -36,7 +36,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Path documentsPath = Path.of(DirectoryCreator.getFileFolder(OsChecker.getOperatingSystemType()));
+        Path documentsPath = DirectoryCreator.getFileFolder(OsChecker.getOperatingSystemType());
 
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(documentsPath)) {
             for (Path path : stream) {
@@ -70,8 +70,7 @@ public class MainController implements Initializable {
         });
     }
 
-    @FXML
-    private void openServer(MouseEvent mouseEvent) {
+    public void openServer(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2) {
             ServerList selectedItem = serverList.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
@@ -88,12 +87,10 @@ public class MainController implements Initializable {
         }
     }
 
-    @FXML
-    private void createServer(ActionEvent actionEvent) {
+    public void createServer(ActionEvent actionEvent) {
         openServerView("/net/andrecarbajal/minecontrolfx/create-view.fxml");
     }
 
-    @FXML
     private void openServerView(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));

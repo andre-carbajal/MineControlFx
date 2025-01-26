@@ -50,4 +50,27 @@ public class PaperLoader implements ILoader{
         }
         return versions;
     }
+
+    public String getLatestBuild(String version) {
+        int lastBuild = -1;
+        try {
+            URL url = new URL(getLoaderApi() + "/versions/" + version);
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            Gson gson = new Gson();
+            JsonObject versionObj = gson.fromJson(reader, JsonObject.class);
+            JsonArray buildsArray = versionObj.getAsJsonArray("builds");
+            if (!buildsArray.isEmpty()) {
+                lastBuild = buildsArray.get(buildsArray.size() - 1).getAsInt();
+            }
+
+            reader.close();
+            connection.disconnect();
+        } catch (Exception e) {
+            Constants.LOGGER.error("Error getting latest build from Paper", e);
+        }
+        return String.valueOf(lastBuild);
+    }
 }

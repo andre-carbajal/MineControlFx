@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class DirectoryCreator {
-    public static String getFileFolder(OsChecker.OSType osType) {
+    public static Path getFileFolder(OsChecker.OSType osType) {
         String fileFolder = switch (osType) {
             case Windows -> System.getenv("APPDATA");
             case MacOS -> System.getProperty("user.home") + "/Library/Application Support";
@@ -16,7 +16,7 @@ public class DirectoryCreator {
         };
 
         Path path = Paths.get(fileFolder, "MineControl");
-        if (!Files.exists(path)) {
+        if (Files.notExists(path)) {
             try {
                 Files.createDirectories(path);
             } catch (IOException e) {
@@ -24,6 +24,19 @@ public class DirectoryCreator {
             }
         }
 
-        return path.toString();
+        return path;
+    }
+
+    public static Path getServerFolder(OsChecker.OSType osType) {
+        Path path = getFileFolder(osType).resolve("servers");
+        if (Files.notExists(path)) {
+            try {
+                Files.createDirectories(path);
+            } catch (IOException e) {
+                Constants.LOGGER.error("Failed to create directory: {}", path, e);
+            }
+        }
+
+        return path;
     }
 }
