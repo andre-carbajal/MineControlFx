@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<ScrollPane prefHeight="400.0" prefWidth="233.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.andrecarbajal.minecontrolfx.controller.CreateController">
-    <content>
-        <Label text="Scrool Pane View" />
-    </content>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<ScrollPane hbarPolicy="NEVER" prefHeight="400.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.andrecarbajal.minecontrolfx.controller.CreateController">
+   <content>
+      <VBox prefHeight="343.0" prefWidth="485.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="CREATE A NEW SERVER" />
+            <Label text="Name:" />
+            <TextField fx:id="nameTextField" />
+            <Label text="Loader:" />
+            <ListView fx:id="loaderListView" prefHeight="200.0" prefWidth="150.0" />
+            <Label text="Version:" />
+            <ChoiceBox fx:id="versionChoiceBox" prefWidth="150.0" />
+            <Button fx:id="createButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#createButtonAction" text="Create" />
+         </children>
+      </VBox>
+   </content>
 </ScrollPane>
