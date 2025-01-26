@@ -4,6 +4,11 @@ import java.util.List;
 
 public class Loaders {
     public static List<ILoader> getLoaders() {
-        return List.of(new VanillaLoader(), new SnapshotLoader());
+        return List.of(
+                new VanillaLoader(),
+                new SnapshotLoader(),
+                new PaperLoader(),
+                new FabricLoader()
+        );
     }
 }
