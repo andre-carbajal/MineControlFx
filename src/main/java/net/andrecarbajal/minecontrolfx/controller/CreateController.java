@@ -60,10 +60,6 @@ public class CreateController implements Initializable {
             updateCreateButtonState();
         });
 
-        versionChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            updateCreateButtonState();
-        });
-
         updateCreateButtonState();
     }
 
@@ -73,7 +69,7 @@ public class CreateController implements Initializable {
         createButton.setDisable(!(isLoaderSelected && isTextFilled));
     }
 
-    public void createButtonAction(ActionEvent actionEvent) throws IOException {
+    public void createButtonAction(ActionEvent actionEvent) {
         Path serverFolder = DirectoryCreator.getServerFolder(OsChecker.getOperatingSystemType()).resolve(nameTextField.getText());
         if (Files.notExists(serverFolder)) {
             try {
