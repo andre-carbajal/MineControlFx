@@ -29,6 +29,7 @@ public interface IDownloader {
 
                 totalBytesRead += bytesRead;
                 double progress = (double) totalBytesRead / fileSize * 100;
+                Constants.LOGGER.info(String.format("Downloading... %.2f%%", progress), progress);
             }
         } catch (IOException e) {
             Constants.LOGGER.error("Error downloading file: {}", String.valueOf(e));

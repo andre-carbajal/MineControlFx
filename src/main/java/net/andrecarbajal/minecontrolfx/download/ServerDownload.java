@@ -20,17 +20,14 @@ public class ServerDownload implements IDownloader {
     }
 
     private String getDownloadUrl(ILoader loader, String version) {
-        if (loader instanceof PaperLoader) {
-            PaperLoader paperLoader = (PaperLoader) loader;
+        if (loader instanceof PaperLoader paperLoader) {
             String latestBuild = paperLoader.getLatestBuild(version);
             return paperLoader.getLoaderApi() + "/versions/" + version + "/builds/" + latestBuild + "/downloads/paper-" + version + "-" + latestBuild + ".jar";
-        } else if (loader instanceof FabricLoader) {
-            FabricLoader fabricLoader = (FabricLoader) loader;
+        } else if (loader instanceof FabricLoader fabricLoader) {
             String loaderVersion = fabricLoader.getLoaderVersion();
             String installerVersion = fabricLoader.getInstallerVersion();
             return "https://meta.fabricmc.net/v2/versions/loader/" + version + "/" + loaderVersion + "/" + installerVersion + "/server/jar";
-        } else if (loader instanceof MojangLoader) {
-            MojangLoader mojangLoader = (MojangLoader) loader;
+        } else if (loader instanceof MojangLoader mojangLoader) {
             return mojangLoader.getVersionId(version);
         }
         return null;
