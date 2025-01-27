@@ -13,9 +13,11 @@ import net.andrecarbajal.minecontrolfx.util.os.DirectoryCreator;
 import net.andrecarbajal.minecontrolfx.util.os.OsChecker;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 
 public class CreateController implements Initializable {
@@ -86,6 +88,7 @@ public class CreateController implements Initializable {
         downloadTask.setOnSucceeded(e -> {
             statusLabel.textProperty().unbind();
             statusLabel.setText("Download complete");
+            copyIconToServerFolder(serverFolder);
         });
         downloadTask.setOnFailed(e -> {
             statusLabel.textProperty().unbind();
@@ -111,5 +114,27 @@ public class CreateController implements Initializable {
                 return null;
             }
         };
+    }
+
+    private void copyIconToServerFolder(Path serverFolder) {
+        ILoader selectedLoader = loaderListView.getSelectionModel().getSelectedItem();
+        if (selectedLoader == null) {
+            Constants.LOGGER.warn("No loader selected to copy icon");
+            return;
+        }
+
+        try (InputStream iconStream = getClass().getResourceAsStream(selectedLoader.getLoaderIcon().getUrl())) {
+            if (iconStream == null) {
+                Constants.LOGGER.error("Icon resource not found for loader: {}", selectedLoader.getLoaderIcon().getUrl());
+                return;
+            }
+
+            Path iconPath = serverFolder.resolve("icon.png");
+            Files.copy(iconStream, iconPath, StandardCopyOption.REPLACE_EXISTING);
+            Constants.LOGGER.info("Successfully copied icon to: {}", iconPath);
+
+        } catch (IOException e) {
+            Constants.LOGGER.error("Failed to copy icon to server folder: {}", serverFolder, e);
+        }
     }
 }

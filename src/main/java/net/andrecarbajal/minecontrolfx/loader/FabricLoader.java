@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import javafx.scene.image.Image;
 import net.andrecarbajal.minecontrolfx.Constants;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -12,11 +13,17 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FabricLoader implements ILoader{
     @Override
     public String getLoaderName() {
         return "Fabric";
+    }
+
+    @Override
+    public Image getLoaderIcon() {
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/loader-icons/fabric.png")));
     }
 
     @Override

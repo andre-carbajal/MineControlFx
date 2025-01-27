@@ -3,6 +3,7 @@ package net.andrecarbajal.minecontrolfx.loader;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import javafx.scene.image.Image;
 import net.andrecarbajal.minecontrolfx.Constants;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -12,11 +13,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class PaperLoader implements ILoader{
     @Override
     public String getLoaderName() {
         return "Paper";
+    }
+
+    @Override
+    public Image getLoaderIcon() {
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/loader-icons/paper.png")));
     }
 
     @Override
